@@ -1,0 +1,96 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    
+<section class="text-gray-600 body-font">
+    <div class="container px-5 py-10 mx-auto flex flex-wrap items-center signup">
+      <div class="lg:w-3/5 md:w-1/2 md:pr-16 lg:pr-0 pr-0">
+        <h1 class="title-font font-medium text-3xl text-gray-900">Slow-carb next level shoindcgoitch ethical authentic, poko scenester</h1>
+        <p class="leading-relaxed mt-4">Poke slow-carb mixtape knausgaard, typewriter street art gentrify hammock starladder roathse. Craies vegan tousled etsy austin.</p>
+      </div>
+      <div class=" animate-bounce1 lg:w-2/6 md:w-1/2 bg-gray-100 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
+        <div class="inline-flex ">
+          <h2 onclick="toggleForm('login')" class="text-gray-900 px-2 py-1 text-lg font-medium title-font mb-5 cursor-pointer  hover:bg-red-500 hover:rounded hover:text-white hover:transition-all">Login</h2>
+          <h2 onclick="toggleForm('signup')" class="text-gray-900 px-2 py-1 text-lg font-medium title-font mb-5 ml-10 cursor-pointer hover:bg-red-500 hover:rounded hover:text-white hover:transition-all">Sign Up</h2>
+
+        </div>
+        <hr style="border: 1px solid orange;">
+        <form action="{% url 'sign_up' %}" method="post">
+          {% csrf_token %}
+        <div class="relative mb-4">
+          <label for="full-name" class="leading-7 text-sm text-gray-600">User Name</label>
+          <input type="text" id="username" name="username" class="w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+        </div>
+        <div class="relative mb-4">
+          <label for="email" class="leading-7 text-sm text-gray-600">Email</label>
+          <input type="email" id="email" name="email" class="w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+        </div>
+        <div class="relative mb-4">
+          <label for="email" class="leading-7 text-sm text-gray-600">Password</label>
+          <input type="text" id="email" name="password1" class="w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+        </div>
+        <div class="relative mb-4">
+            <label for="email" class="leading-7 text-sm text-gray-600">Confirm Password</label>
+            <input type="text" id="email" name="password2" class="w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+        </div>
+        <button name="signup" type="submit" class="text-white bg-red-500 border-0 py-2 px-8 focus:outline-none hover:bg-red-600 rounded text-lg">Sign Up</button>
+        <p class="text-xs text-gray-500 mt-3">Literally you probably haven't heard of them jean shorts.</p>
+      </div>
+    </form>
+</div>
+</section>
+
+<section class="text-gray-600 hidden   body-font login">
+  <div class="container px-5 py-24 mx-auto flex flex-wrap items-center">
+    <div class="lg:w-3/5 md:w-1/2 md:pr-16 lg:pr-0 pr-0">
+      
+      <h1 class="title-font font-medium text-3xl text-gray-900">Slow-carb next level shoindcgoitch ethical authentic, poko scenester</h1>
+      
+      <p class="leading-relaxed mt-4">Poke slow-carb mixtape knausgaard, typewriter street art gentrify hammock starladder roathse. Craies vegan tousled etsy austin.</p>
+    </div>
+    <div class=" animate-bounce1 lg:w-2/6 md:w-1/2 bg-gray-100 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
+      <div class="  inline-flex ">
+        <h2 onclick="toggleForm('login')" class="  text-gray-900 px-2 py-1 text-lg font-medium title-font mb-5 cursor-pointer  hover:bg-red-500 hover:rounded hover:text-white hover:transition-all">Login</h2>
+        <h2 onclick="toggleForm('signup')" class="text-gray-900 px-2 py-1 text-lg font-medium title-font mb-5 ml-10 cursor-pointer hover:bg-red-500 hover:rounded hover:text-white hover:transition-all">Sign Up</h2>
+      </div>
+      <hr style="border: 1px solid orange;">
+      <div class="relative mb-4">
+        <form action="{% url 'sign_up' %}" method="post">
+          {% csrf_token %} 
+        <label for="full-name" class="leading-7 text-sm text-gray-600">User Name</label>
+        <input type="text" id="full-name" name="username" class="w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+      </div>
+      <div class="relative mb-4">
+        <label for="email" class="leading-7 text-sm text-gray-600">Password</label>
+        <input type="text" id="email" name="password2" class="w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+      </div>
+      <a href=""><button name="login" class="text-white bg-red-500 border-0 py-2 px-8 focus:outline-none hover:bg-red-600 rounded text-lg">Login</button></a> 
+      <p class="text-xs text-gray-500 mt-3">Literally you probably haven't heard of them jean shorts.</p>
+    </form>
+    </div>
+  </div>
+</section>
+
+
+
+<script>
+  let signup=document.getElementsByClassName('signup')
+  let login=document.getElementsByClassName('login')
+  function toggleForm(value){
+    if (value ==='signup') {
+      // transition style
+    
+
+      login[0].classList.add("hidden")
+      signup[0].classList.remove("hidden")
+      } else if (value === 'login') {
+        login[0].classList.remove("hidden");
+        signup[0].classList.add("hidden");
+        }
+
+  }
+</script>
+
+
+
+{% endblock content %}

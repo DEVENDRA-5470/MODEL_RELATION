@@ -1,0 +1,48 @@
+{% extends 'index.html' %}
+{% block content %}
+<div class="d-flex justify-center bg-slate-100 py-8">
+    <div >
+        <form  action="" method="post" enctype="multipart/form-data" novalidate class="max-w-md mx-auto">
+            {% csrf_token %}
+            
+            <div class="mb-4">
+                <label for="id_profile_img" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">Upload Pic</label>
+                <input class="w-80 block py-3 px-3 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" {{ form.profile_img }}
+            </div>
+            
+            <div class="mb-4">
+                <label for="id_name" class="block text-gray-700 text-sm font-bold mb-2">Name</label>
+                <input class="w-80" {{ form.name }}
+            </div>
+            
+            <div class="mb-4">
+                <label for="id_title" class="block text-gray-700 text-sm font-bold mb-2">Title</label>
+                <input class="w-80" {{ form.title }}
+            </div>
+            
+            <div class="mb-4 ">
+                <label for="id_desc" class="block text-gray-700 text-sm font-bold mb-2">Description</label>
+                <input class="w-80" {{ form.desc }}
+            </div>
+            
+            <div class="mb-4">
+                <label for="id_instagram" class="block text-gray-700 text-sm font-bold mb-2">Instagram</label>
+                <input class="w-80" {{ form.instagram }}
+            </div>
+            
+            <div class="mb-4">
+                <label for="id_linkedin" class="block text-gray-700 text-sm font-bold mb-2">LinkedIn</label>
+                <input class="w-80" {{ form.linkedin }}
+            </div>
+            
+            <div class="mb-4">
+                <label for="id_github" class="block text-gray-700 text-sm font-bold mb-2">GitHub</label>
+                <input class="w-80" {{ form.github }}
+            </div>
+            
+            <button type="submit" class=" w-80 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Save Profile</button>
+        </form>
+    </div>
+</div>
+
+{% endblock content %}
