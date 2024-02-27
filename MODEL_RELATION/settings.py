@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'ONE_TO_ONE',
+    'RELATIONS_APP',
     'tailwind',
     'theme',
 ]
@@ -132,4 +132,4 @@ MEDIA_URL='/media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-handler404 = 'ONE_TO_ONE.views.custom_404_view_name'
+handler404 = 'RELATIONS_APP.views.custom_404_view_name'

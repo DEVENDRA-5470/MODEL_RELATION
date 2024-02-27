@@ -29,7 +29,7 @@ def sign_up(request):
             if user is not None:
                 print(user)
                 login(request, user)
-                return redirect('change_profile')
+                return redirect('set_profile')
             else:
                 return render(request,'sign_up.html', {'error':'Invalid username or password'})
     
@@ -48,26 +48,32 @@ def sign_up(request):
                 # login
                     user = authenticate(username=username, password=password1)
                     login(request,user)
-                    return redirect('change_profile')
+                    return redirect('set_profile')
                 except IntegrityError as e:
                     return render(request, 'sign_up.html',{'error':'Username already exists.'})
                 
     return render(request, 'sign_up.html')
 
 def profile(request):
-    data=Profile.objects.filter(user=request.user)
-    print(data,"--------------------------------")
-    context = {'data':data}
-    return render(request, 'profile.html', context)
+    if request.user.is_authenticated:
+        data=Profile.objects.filter(user=request.user)
+        print(data,"--------------------------------")
+        context = {'data':data}
+        return render(request, 'profile.html', context)
+    else:
+        return redirect('sign_up')
 
 
-def change_profile(request):
+def set_profile(request):
     if request.method == "POST":
         form = ProfileForm(request.POST, request.FILES)
         if form.is_valid():
             profile = form.save(commit=False)
             profile.user = request.user
+            print(profile.user, "profile")
             profile.save()
+            print(profile,"-----------------------------")
+
             messages.success(request, 'Profile updated successfully.')
             return redirect("/profile/")
         else:
@@ -75,11 +81,28 @@ def change_profile(request):
 
     form = ProfileForm()
     context = {'form': form}
-    return render(request, 'change_profile.html', context)
+    return render(request, 'set_profile.html', context)
 
 def user_logout(request):
     logout(request)
     return redirect("/")
+    
+
+def edit_profile(request,id):
+    c_user=Profile.objects.get(pk=id)
+    if request.method == "POST":
+        form = ProfileForm(request.POST, request.FILES ,instance=c_user)
+        if form.is_valid():
+            form.save()
+            messages.info(request,'Changes saved!')
+            return redirect('profile')
+        else:
+            messages.warning(request,'Please correct the error below.')
+    form = ProfileForm(instance=c_user)
+    context={'form':form}
+    return render(request,'edit_profile.html',context)
+
+
     
 
 

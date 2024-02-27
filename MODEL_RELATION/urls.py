@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from ONE_TO_ONE.views import *
+from RELATIONS_APP.views import *
 from django.conf.urls.static import static
 from django.conf import settings
 
@@ -26,7 +26,8 @@ urlpatterns = [
     path('', home, name='home'),
     path('sign_up/', sign_up, name='sign_up'),
     path('profile/', profile, name='profile'),
-    path('change_profile/', change_profile, name='change_profile'),
-    path('user_logout/',user_logout,name='user_logout')
+    path('set_profile/', set_profile, name='set_profile'),
+    path('user_logout/',user_logout,name='user_logout'),
+    path('edit_profile/<int:id>/',edit_profile,name='edit_profile')
     # path('user_login/', login_user, name='login_user'),
 ]+static(settings.MEDIA_URL ,document_root=settings.MEDIA_ROOT)

@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class Profile(models.Model):
+    ############################### one to one realationship betweent two tables ##############################
     user = models.OneToOneField(User, on_delete= models.CASCADE)
     profile_img =  models.ImageField(default = 'media/default.jpg', upload_to = 'pics', null = True, blank = True)
 
@@ -23,3 +24,24 @@ class Profile(models.Model):
     def __str__(self):
         return f'{self.user.username} Profile'
 
+
+################################ Many to one ##########################################
+class Book(models.Model):
+    title = models.CharField(max_length=150)
+    published_date = models.DateField()
+    content=models.TextField()
+
+    # Many-to-one Relationships
+    author = models.ForeignKey('Author',on_delete=models.SET_NULL, null= True, blank= True)
+    
+    class Meta:
+        ordering = ['-published_date']
+        
+    
+    # Create your models here.
+class Author(models.Model):
+    firstName = models.CharField(max_length=30)
+    lastName = models.CharField(max_length=40)
+
+    def __str__(self):
+        return self.firstName + self.lastName
