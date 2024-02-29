@@ -25,23 +25,33 @@ class Profile(models.Model):
         return f'{self.user.username} Profile'
 
 
-################################ Many to one ##########################################
-class Book(models.Model):
-    title = models.CharField(max_length=150)
-    published_date = models.DateField()
-    content=models.TextField()
-
-    # Many-to-one Relationships
-    author = models.ForeignKey('Author',on_delete=models.SET_NULL, null= True, blank= True)
-    
-    class Meta:
-        ordering = ['-published_date']
-        
-    
-    # Create your models here.
+################################ Many to one ########################################## 
 class Author(models.Model):
     firstName = models.CharField(max_length=30)
     lastName = models.CharField(max_length=40)
 
     def __str__(self):
         return self.firstName + self.lastName
+    
+class Book(models.Model):
+    title = models.CharField(max_length=150)
+    published_date = models.DateField()
+    content=models.TextField()
+
+    author = models.ManyToManyField('Author', related_name='books')
+    
+    class Meta:
+        ordering = ['-published_date']
+        
+    
+    # Create your models here.
+
+class Comment(models.Model):
+    text = models.TextField()
+    datePosted = models.DateTimeField(auto_now_add=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    book = models.ManyToManyField(Book, related_name='comments')
+    def __str__(self):
+        return f"Comment by {self.user.username}: {self.text[:20]}"
+
+        
